@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>广西-投票</title>
+<link rel="stylesheet" href="__STATIC__/home/css/apply.css" />
+<link rel="stylesheet" href="__STATIC__/home/css/nav.css" />
+<script type="text/javascript" src="__STATIC__/home/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="__STATIC__/home/js/nav.js"></script>
+<script type="text/javascript" src="__STATIC__/home/js/apply.js"></script>
+<script type="text/javascript"  src="__STATIC__/home/js/plupload.js"></script>
+</head>
+<body>
+	<section class="container">
+		<div class="apply-box">
+			<h3 class="tit">
+				<span>我在广西哪些年</span>摄影大赛 - 报名表
+			</h3>
+		</div>
+		<div class="apply-content">
+			<div class="clear apply-text">
+				<label class="label">姓<i class="i-2">名</i></label>
+				<div class="input">
+					<input type="text" id="name" name="name"
+						value="{$createrecord.turename}" placeholder="请输入姓名" />
+				</div>
+			</div>
+			<div class="clear apply-text">
+				<label class="label">手<i class="i-2">机</i></label>
+				<div class="input">
+					<input type="text" name="tel" id="tel" value="{$createrecord.tel}"
+						placeholder="请填写真实手机号码" /> <span>请务必填写真实的手机号码,手机号码将作为您核对中奖信息的重要依据.</span>
+				</div>
+			</div>
+			{if condition="$createrecord.sex eq ''"}
+			<div class="clear apply-text">
+				<label class="label">性<i class="i-2">别</i></label>
+				<div class="input">
+					<input class="input-radio" type="radio" name="sex" id="boy"
+						value="1" checked /> <b class="check"></b><label>&nbsp;先生</label>
+					<input class="input-radio" type="radio" name="sex" id="girl"
+						value="0" /> <b></b><label>&nbsp;女士</label>
+				</div>
+			</div>
+			{/if}
+			<div class="clear apply-text">
+				<label class="label">年<i class="i-2">龄</i></label>
+				<div class="input">
+					<select id="age" name="age">
+						<option value="" {if condition="$createrecord.age eq '0~20'"}selected{/if}>0~20</option>
+						<option value="" {if condition="$createrecord.age eq '20~30'"}selected{/if}>20~30</option>
+						<option value="" {if condition="$createrecord.age eq '30~40'"}selected{/if}>30~40</option>
+						<option value="" {if condition="$createrecord.age eq '40~50'"}selected{/if}>40~50</option>
+						<option value="" {if condition="$createrecord.age eq '50~60'"}selected{/if}>50~60</option>
+						<option value="" {if condition="$createrecord.age eq '60~70'"}selected{/if}>60~70</option>
+						<option value="" {if condition="$createrecord.age eq '70~80'"}selected{/if}>70~80</option>
+						<option value="" {if condition="$createrecord.age eq '80~100'"}selected{/if}>80~100</option>
+						<option value="" {if condition="$createrecord.age eq '100~120'"}selected{/if}>100~120</option>
+					</select>
+				</div>
+			</div>
+			<div class="clear apply-text">
+				<label class="label">邀<i class="i-3">请</i><i class="i-3">码</i></label>
+				<div class="input">
+					<input type="text" name="Invitation_code2"
+						value="{$createrecord.Invitation_codeman}" id="Invitation_code2"
+						placeholder="选填项" /> <span>请填写相应的邀请码.</span>
+				</div>
+			</div>
+			{if condition="$createrecord.status neq 1"}
+			<div class="clear apply-text">
+				<label class="label">上传图片</label>
+				<div id="container" class="input">
+				<div id="filelist" style="color:red;"></div>
+                        <button id="pickfiles" type="button" href="javascript:;">选择图片</button>
+                    
+						<img id="upload_org_code_img" src="{$createrecord.picture}" class="img-view"> 
+						<input id="file_upload_image" name="url"
+						type="hidden" multiple="true" value="{$createrecord.picture}"
+						style="width: 100%; height: 40vmin; background-color: #ebebeb;">
+						<span>图片要求:上传一张图片,图片格式为jpg、png、jpeg,大小不得超过5M.</span>
+						<div class="padding-5 border-top">
+							<span class="c-green">正确示范（人物加风景）</span>
+							<img class="img-view" src="__IMAGE__/right.jpg" />
+						</div>
+						<div class="padding-5">
+							<span class="c-red">错误示范（纯人物）</span>
+							<img class="img-view" src="__IMAGE__/falseone.jpg" />
+						</div>
+						<div class="padding-5">
+							<span class="c-red">错误示范（纯风景）</span>
+							<img class="img-view" src="__IMAGE__/falsetwo.jpg" />
+						</div>
+					</div>
+			</div>
+			{/if}
+			<td></td>
+			<div class="clear apply-text">
+				<label class="label">照片地址</label>
+				<div class="input">
+					<input type="text" name="address" id="address"
+						value="{$createrecord.address}" placeholder="请填写图片地址" /> <span>例:广西省南宁市中山路8号.</span>
+				</div>
+			</div>
+			<div class="clear apply-text">
+				<label class="label">参赛宣言</label>
+				<div class="input">
+					<textarea type="text" name="slogan" id="slogan" placeholder="参赛宣言">{$createrecord.slogan}</textarea>
+					<span>请填写不少于15字的参赛宣言.</span>
+				</div>
+			</div>
+			<button id="btn">提交</button>
+		</div>
+	</section>
+	<br />
+	<br />
+	<section class="container">
+		<h3 class="h2-center">照片标准</h3>
+		<div class="content">
+			<p>1、为了维护全体参赛者的利益，本次活动秉承公平、公正、公开的原则，对所有参赛照片进行严格审核。</p>
+			<p>2、照片画面尽量清晰可辩，内容包含人物和广西当地自然风光、人文景观，恕不接受纯风景、静物照片。</p>
+			<p>3、参赛照片不得含有涉及色情、恐怖、暴力等不良信息内容。如未通过后台审核，请自行替换修改。</p>
+			<p>4、参赛者一旦上传照片，即视为同意并遵守以上规则。</p>
+		</div>
+	</section>
+	<!--导航栏-->
+	<section class="tabbar">
+		<ul>
+			<li><a href="/index.php/home/index/index">首页</a></li>
+			<li><a href="/index.php/home/vote/index" class="cur">报名</a></li>
+			<li><a href="/index.php/home/votelist/index">榜单</a></li>
+			<li><a href="/index.php/home/myinfo/index">我的</a></li>
+		</ul>
+	</section>
+
+	<script>
+		$(function() {
+			//图片上传
+			var uploader = new plupload.Uploader(
+					{
+						runtimes : 'html5,flash,silverlight,html4',
+						browse_button : 'pickfiles', // you can pass an id...
+						container : document.getElementById('container'), // ... or DOM Element itself
+						url : '/index.php/home/vote/upload',
+						resize : {
+							quality : 70,
+							preserve_headers : false
+						},
+						flash_swf_url : '../js/Moxie.swf',
+						silverlight_xap_url : '../js/Moxie.xap',
+
+						filters : {
+							max_file_size : '5mb',
+							mime_types : [ {
+								title : "Image files",
+								extensions : "image/jpg,image/png,image/jepg,jpg,png,jpeg"
+							}, ]
+						},
+
+						init : {
+							PostInit : function() {
+								document.getElementById('filelist').innerHTML = '';
+							},
+
+							FilesAdded : function(up, files) {
+								plupload
+										.each(
+												files,
+												function(file) {
+													document
+															.getElementById('filelist').innerHTML += '<div id="' + file.id + '">'
+															+ file.name
+															+ ' ('
+															+ plupload
+																	.formatSize(file.size)
+															+ ') <b></b></div>';
+												});
+								uploader.start();
+							},
+
+							UploadProgress : function(up, file) {
+								document.getElementById(file.id)
+										.getElementsByTagName('b')[0].innerHTML = '<span>'
+										+ file.percent + "%</span>";
+							},
+
+							UploadComplete : function(uploader, files) {
+								
+							},
+
+							FileUploaded : function(uploader, file,
+									responseObject) {
+								$(responseObject)
+										.each(
+												function(k, v) {
+													if(v.response!='picturefail'){
+														$("#upload_org_code_img").attr("src","/"+v.response);
+														$("#file_upload_image").val("/"+v.response);
+														$("#filelist").html('上传成功');
+													}else{
+														$("#filelist").html('上传失败');
+													}
+												});
+							}
+
+						}
+					});
+			
+			uploader.init();
+			
+
+			//提交表单
+			$("#btn").click(
+					function() {alert("报名已经结束");
+/* 						var name = $("#name").val();
+						//姓名正则 {汉字2-5}
+						var nameReg = /^[\u4E00-\u9FA5]{2,5}$/;
+						var tel = $("#tel").val();
+						//电话正则 {11位数，不得随意数字，}
+						var phoneReg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
+						var sex = $('input:radio:checked').val();
+						//填写不得为空
+						//图片值
+						var picture = $('#file_upload_image').val();
+						var requeryreg = /\S/;
+						var slogan = $("#slogan").val();
+						var address = $("#address").val();
+						var age = $('#age option:selected').text();
+						var Invitation_code2 = $("#Invitation_code2").val();
+						//验证姓名
+						if (!nameReg.test(name)) {
+							alert('请您填真实姓名');
+							return false;
+						} else if (!phoneReg.test(tel)) {
+							alert('请您填真实电话');
+							return false;
+						} else if (!requeryreg.test(picture)
+								|| picture == "/static/home/image/gzewm.jpg") {
+							alert('请您按照图片要求上传参赛图片');
+							return false;
+						} else if (address == '') {
+							alert('请您输入该照片拍摄地址');
+							return false;
+						} else if ($("#slogan").val().length < 15) {
+							alert('请您输入不少于15字的参赛宣言');
+							return false;
+						} else {
+							$.post("/index.php/home/vote/createVote", {
+								name : name,
+								tel : tel,
+								sex : sex,
+								picture : picture,
+								address : address,
+								age : age,
+								Invitation_codeman : Invitation_code2,
+								slogan : slogan
+							}, function(data) {
+								if (data == 1) {
+									alert("恭喜您，报名成功，请等待审核！");
+									window.location.href="/index.php/home/votelist/index";
+								} else if (data == 2) {
+									alert("您已经报名成功，不能重复报名！");
+									window.location.href="/index.php/home/votelist/index";
+								} else if (data == 3) {
+									alert("恭喜你修改成功，请等待审核！");
+									window.location.href="/index.php/home/votelist/index";
+								}
+
+							})
+						} */ 
+					});
+		});
+	</script>
+</body>
+</html>

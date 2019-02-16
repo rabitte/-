@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="vendor/topthink/think-oracle/src"/>
+	<buildpathentry kind="src" path="vendor/composer"/>
+	<buildpathentry kind="src" path="application"/>
+	<buildpathentry kind="src" path="vendor/topthink/think-image/src"/>
+	<buildpathentry kind="src" path="vendor/topthink/think-migration/phinx/src/Phinx"/>
+	<buildpathentry kind="src" path="vendor/topthink/think-queue/src"/>
+	<buildpathentry kind="src" path="vendor/topthink/think-installer/src"/>
+	<buildpathentry kind="src" path="vendor/topthink/think-mongo/src"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry kind="src" path="vendor/topthink/think-captcha/src"/>
+	<buildpathentry kind="src" path="vendor/topthink/think-helper/src"/>
+	<buildpathentry kind="src" path="vendor/topthink/think-migration/src"/>
+</buildpath>

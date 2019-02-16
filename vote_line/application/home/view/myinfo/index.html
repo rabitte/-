@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  		<meta name="renderer" content="webkit">
+  		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="__CSS__/nav.css"/>
+		<link rel="stylesheet" type="text/css" href="__CSS__/myinfo.css" />
+		<script src="__JS__/jquery-3.3.1.min.js"></script>
+	</head>
+	<body>
+		<section class="banner">
+			<img class="img-view" src="__IMAGE__/banner.png" />
+		</section>
+		<section class="info-box">
+			<div class="relative">
+				{if condition="$persondata.isuser eq 0"}
+				<img src="__IMAGE__/banner.png" />
+				{else /}
+				<img src="{$persondata.picture}" />
+				{/if}
+				<span>{$persondata.turename}</span>
+			</div>
+			<div class="rel">
+				<ul class="info-ul">
+					{if condition="$persondata.isuser eq 0"}
+						<li class="info-ico height-60"><i></i>今日剩余投票次数<span>{$persondata.bonus_votenum}次</span></li>
+					{else /}
+						<li class="info-ico height-60"><i></i>我的编号<span>{$persondata.numberid}</span></li>
+						<li class="info-ico height-60"><i></i>我的排名<span>第{$persondata.rank}名</span></li>
+						<li class="info-ico height-60"><i></i>我的票数<span>{$persondata.score}票</span></li>
+						<li class="info-ico height-60"><i></i>照片地址<span>{$persondata.address}</span></li>
+						<li class="info-ico height-60"><i></i>我的邀请码<span id="yqm">{$persondata.Invitation_code}</span></li>
+						<li class="info-ico height-60"><i></i>今日剩余投票次数<span>{$persondata.bonus_votenum}次</span></li>
+						<li class="info-ico"><i></i>参赛照片
+							<div class="img-width">
+								<img src="{$persondata.picture}" />
+							</div>
+						</li>
+						<li class="info-ico"><i></i>参赛宣言
+							<div class="img-width">
+								<p>{$persondata.slogan}</p>
+							</div>
+						</li>
+					{/if}
+				</ul>
+			</div>
+		</section>
+		<!--导航栏-->
+		<section class="tabbar">
+			<ul>
+				<li><a href="/index.php/home/index/index">首页</a></li>
+				<li><a href="/index.php/home/vote/index">报名</a></li>
+				<li><a href="/index.php/home/votelist/index">榜单</a></li>
+				<li><a href="/index.php/home/myinfo/index" class="cur">我的</a></li>
+			</ul>
+		</section>
+		<script type="text/javascript" src="__JS__/nav.js" ></script>
+	</body>
+</html>

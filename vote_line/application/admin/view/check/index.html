@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>login-敬和忆宝</title>
+		<link rel="stylesheet" href="__STATIC__/admin/css/index.css" />
+		<script src="__STATIC__/admin/js/jquery-3.3.1.min.js"></script>
+	</head>
+	<body>
+		<div class="left-nav">
+			<div class="logo"><img class="img-view" src="__STATIC__/admin/img/logo.png" alt="" /></div>
+			<ul>
+				<li><a href="/admin/index/index">基本信息</a></li>
+            	<li><a href="/admin/check/index">审核信息</a></li>
+            	<li><a href="/admin/user/index">添加用户</a></li>
+            	<li><a href="/admin/login/logout">退出登录</a></li>
+			</ul>
+		</div>
+		<div class="container">
+			<h3>信息</h3>
+			<table class="table">
+				<tr>
+					<th>姓名</th>
+					<th>手机</th>
+					<th>性别</th>
+					<th>年龄</th>
+					<th>编号</th>
+					<th>操作</th>
+				</tr>
+			</table>
+			<table class="table">
+				{foreach name="data"  key="k" item="v"}
+				<tr>
+					<td>{$v.turename}</td>
+					<td>{$v.tel}</td>
+					<td>{$v.sex}</td>
+					<td>{$v.age}</td>
+					<td>{$v.numberid}</td>
+					<td><a style="color:red;cursor:pointer;" href="/index.php/admin/check/detail?openid={$v.openid}" target="_blank">详情</a>&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:red;cursor:pointer;" class="check" ids={$v.id}>通过审核</a>&nbsp;&nbsp;&nbsp;&nbsp;<a style="color:red;cursor:pointer;" class="uncheck" ids={$v.id}>不通过审核</a></td>
+				</tr>
+			   {/foreach}
+			</table>
+
+		</div>
+	</body>
+</html>
+<script>
+	$(".uncheck").click(function(){
+		var id=$(this).attr("ids");
+		if(confirm("确认此操作？")){
+			$.post("/index.php/admin/check/uncheck",{id:id},function(data){
+				if(data==1){
+					window.location.reload();
+				}
+			})
+		}
+	})
+	
+	$(".check").click(function(){
+		var id=$(this).attr("ids");
+		if(confirm("确认此操作？")){
+			$.post("/index.php/admin/check/check",{id:id},function(data){
+				if(data==1){
+					window.location.reload();
+				}
+			})
+		}
+	})
+	
+</script>

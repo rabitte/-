@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+  		<meta name="renderer" content="webkit">
+  		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title>广西-投票</title>
+		<link rel="stylesheet" href="__STATIC__/home/css/nav.css" />
+		<link rel="stylesheet" href="__STATIC__/home/css/votedetail.css" />
+		<script type="text/javascript" src="__STATIC__/home/js/jquery-2.1.0.js"></script>
+		<script src="__STATIC__/home/uploadify/jquery-1.7.2.min.js"></script>
+		<script src="__STATIC__/home/uploadify/jquery.uploadify.min.js"></script>
+		<link rel="stylesheet" href="__STATIC__/home/css/uploadify.css">
+	</head>
+	<body>
+		<section class="banner">
+			<img class="img-view" src="__IMAGE__/banner.png" />
+		</section>
+		<section class="detail-box">
+			<div class="relative">
+				<img src="{$list.picture}" />
+				<span>{$list.turename}</span>
+			</div>
+			<div class="rel">
+				<ul class="detail-ul clear">
+					<li class="li">
+						<i class="i-ico"></i><span>编号</span>
+						<span class="color-ff">{$list.numberid}</span>
+					</li>
+					<li class="li">
+						<i class="i-ico"></i><span>排名</span>
+						<span class="color-ff">{$list.rank}</span>
+					</li>
+					<li class="li">
+						<i class="i-ico"></i><span>票数</span>
+						<span class="color-ff">{$list.score}</span>
+					</li>
+				</ul>
+			</div>
+			<input type="hidden" value="{$list.openid}" id="openid"/>
+			<div class="rel top-20">
+				<i class="i-ico"></i><span>照片地址<span>{$list.address}</span></span>
+			</div>
+		</section>
+		<!--图片和宣言-->
+		<section class="manifesto">
+			<div class="width-100"><img class="img-view" src="{$list.picture}" alt=""></div>
+			<i class="i-icon"></i><span class="c-33">参赛宣言:{$list.slogan}</span>
+		</section>
+		<!--导航栏-->
+		<section class="tabbar">
+			<ul>
+				<li><a href="/index.php/home/index/index">首页</a></li>
+				<li><a href="/index.php/home/vote/index">报名</a></li>
+				<li><a href="/index.php/home/votelist/index" class="cur">榜单</a></li>
+				<li><a href="/index.php/home/myinfo/index">我的</a></li>
+			</ul>
+		</section>
+		<a href="#" id="vote" class="fixed">投票</a>
+		<script type="text/javascript" src="__JS__/nav.js" ></script>
+	</body>
+</html>
+<script>
+$("#vote").click(function(){
+	var date = new Date();
+    var now = date.getTime();
+    //设置截止时间
+    var str="2018/12/12 00:00:00";
+    var endDate = new Date(str);
+    var end = endDate.getTime();
+    //时间差
+    var leftTime = end-now;
+    if(leftTime<0){
+    	alert("活动已经结束");
+    	return false;
+    }
+	var openid=$("#openid").val();
+	$.post("/index.php/home/votedetail/vote",{openid:openid},function(data){
+		if(data==1){
+			alert("投票成功");
+			window.location.reload();
+		}else if(data==2){
+			alert("您今日没有投票次数了，明日再来！");
+		}
+	})
+})
+</script>

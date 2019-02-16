@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>login-敬和忆宝</title>
+		<link rel="stylesheet" href="__STATIC__/admin/css/detail.css" />
+		<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+	</head>
+	<body>
+		<div class="left-nav">
+			<div class="logo"><img class="img-view" src="__STATIC__/admin/img/logo.png" alt="" /></div>
+				<ul>
+					<li><a href="/admin/index/index">基本信息</a></li>
+					<li><a href="/admin/check/index">审核信息</a></li>
+					<li><a href="/admin/user/index">添加用户</a></li>
+					<li><a href="/admin/login/logout">退出登录</a></li>
+				</ul>
+			</div>
+		</div>
+			<div class="container">
+            			<h3>详细信息</h3>
+            			<table class="table">
+            				<tr>
+            					<td>姓名</td>
+            					<td>{$data.turename}</td>
+            				</tr>
+            				   <tr>
+                            <td>昵称</td>
+                            <td>{$data.nickname}</td>
+                             </tr>
+            				<tr>
+                            <td>性别</td>
+                            <td>{$data.sex}</td>
+                             </tr>
+                                <tr>
+                             <td>年龄</td>
+                             <td>{$data.age}</td>
+                              </tr>
+            				<tr>
+            					<td>手机</td>
+            					<td>{$data.tel}</td>
+            				</tr>
+            				<tr>
+            					<td>邀请人</td>
+            					<td>{$data.Invitation_codeman}</td>
+            				</tr>
+            				<tr>
+            					<td>编号</td>
+            					<td>{$data.numberid}</td>
+            				</tr>
+            				<tr>
+            					<td>票数</td>
+            					<td>{$data.score}</td>
+            				</tr>
+            				<tr>
+            					<td>剩余投票次数</td>
+            					<td>{$data.bonus_votenum}</td>
+            				</tr>
+            					<tr>
+                                <td>邀请码</td>
+                                <td>{$data.Invitation_code}</td>
+                            </tr>
+            				<tr>
+            					<td>邀请成功的次数</td>
+            					<td>{$data.Invitation_times}</td>
+            				</tr>
+            				<tr>
+            					<td>openid</td>
+            					<td>{$data.openid}</td>
+            				</tr>
+                             <tr>
+                            <td>参赛宣言</td>
+                            <td>{$data.slogan}</td>
+                             </tr>
+                            <tr>
+                          <td>图片地址</td>
+                         <td>{$data.address}</td>
+                          </tr>
+                          <tr>
+            				     <td>图片</td>
+            				     <td><img class="csz-img" src="__ROOT__{$data.picture}" alt="" /></td>
+                            </tr>
+            			</table>
+            			
+            			<input type="hidden" id="openid" value="{$data.openid}">
+            	
+            		</div>
+					<div class="tk">
+						<img src="__ROOT__{$data.picture}" alt="" />
+					</div>
+	</body>
+</html>
+<script >
+$(function(){
+    $('#xiugai').click(function() {
+				var score = $("#score").val();
+				var openid =$("#openid").val();
+			  $.ajax({
+                //async:false,        //请求是同步或异步    默认为true  为true时不用写
+                type: "POST",            //设置类型
+                url: "/admin/index/edit",
+                dataType: "json",
+                data:{"score":score,"openid":openid},
+                success: function (res) {
+                alert("修改成功");
+                },
+                error: function (data) {
+                alert("修改失败");
+                }
+            });
+    });
+
+			});
+$(function(){
+	$(".csz-img").on('click', function(){
+		$(".tk").css("display","block");
+		$(".tk").click(function(){
+			$(this).css("display","none");
+		})
+	})
+})
+</script>

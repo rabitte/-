@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>login-敬和忆宝</title>
+		<link rel="stylesheet" href="__STATIC__/admin/css/index.css" />
+<script type="text/javascript" src="__STATIC__/admin/js/jquery-2.1.0.js"></script>
+	</head>
+	<body>
+		<div class="left-nav">
+			<div class="logo"><img class="img-view" src="__STATIC__/admin/img/logo.png" alt="" /></div>
+			<ul>
+				<li><a href="/admin/index/index">基本信息</a></li>
+            	<li><a href="/admin/check/index">审核信息</a></li>
+            	<li><a href="/admin/user/index">添加用户</a></li>
+            	<li><a href="/admin/login/logout">退出登录</a></li>
+			</ul>
+		</div>
+		<div class="container">
+			<h3>信息</h3>
+			<table class="table">
+				<tr>
+                <th>姓名</th>
+                <th>手机</th>
+                <th>编号</th>
+                <th>票数</th>
+                <th>排名</th>
+                <th>剩余投票次数</th>
+                <th>邀请成功的次数</th>
+                 <th>详细信息</th>
+				</tr>
+			</table>
+			<table class="table">
+				{foreach name="data"  key="k" item="v"}
+                				<tr>
+                					<td>{$v.turename}</td>
+                					<td>{$v.tel}</td>
+                					<td>{$v.numberid}</td>
+                					<td>{$v.score}</td>
+                					<td>{$k+1+$v.page}</td>
+                					<td>{$v.bonus_votenum}</td>
+                					<td>{$v.Invitation_times}</td>
+                                  <td><a href="{:url('admin/index/detail',['openid'=>$v['openid']])}" class="detail">详细信息</a></td>
+                				</tr>
+                			   {/foreach}
+			</table>
+		</div>
+            <div id="page">{$page}</div>
+	</body>
+</html>
